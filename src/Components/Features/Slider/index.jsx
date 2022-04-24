@@ -9,42 +9,9 @@ import ReactTimeAgo from "../ProductsView/Templates/ClipItem";
 import {Card, CardContent, CardMedia, Grid, Typography, Rating} from "@mui/material";
 // import {ClipItem} from "../ProductsView/Templates";
 export default function SliderComponent(props) {
-    const [delay, setDelay]= useState(2000);
-    // var items = [
-    //     {
-    //         name: "Random Name #1",
-    //         description: "Probably the most random thing you have ever seen!"
-    //     },
-    //     {
-    //         name: "Random Name #2",
-    //         description: "Hello World!"
-    //     }
-    //     ,
-    //     {
-    //         name: "Random Name #3",
-    //         description: "Hello World!"
-    //     }
-    //     ,
-    //     {
-    //         name: "Random Name #4",
-    //         description: "Hello World!"
-    //     }
-    //     ,
-    //     {
-    //         name: "Random Name #5",
-    //         description: "Hello World!"
-    //     }
-    //
-    // ]
-    // const {rowData={}} = props;
-    // const {categoryRow={}} = rowData;
-    // const {sonItems=[]} = categoryRow;
-    useEffect(()=>{
-    },[]);
     const {rowData = {}} = props;
     const {categoryRow = {}} = rowData;
     const {sonItems = []} = categoryRow;
-    console.log("sonItems", sonItems)
     return (
         <div className={'owl-slider'}>
             <Grid container>

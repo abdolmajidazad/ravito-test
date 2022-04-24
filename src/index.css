@@ -84,3 +84,14 @@ body .owl-stage .owl-item {
 
 
 }
+
+.commentInput{
+  width:100%;
+}
+
+.commentInput .MuiInputBase-formControl{
+  border-radius:30px
+}
+.commentInput svg{
+ transform: rotate(180deg);
+}

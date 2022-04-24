@@ -1,7 +1,8 @@
 import {Fragment, useState, useMemo} from 'react';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
+import {ListItem,InputAdornment} from '@mui/material';
 import Divider from '@mui/material/Divider';
+import TextField from '@mui/material/TextField';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
@@ -15,6 +16,9 @@ import ReactTimeAgo from "react-time-ago";
 import LoadingButton from '@mui/lab/LoadingButton';
 import {useTranslation} from "react-i18next";
 import ReadMoreIcon from '@mui/icons-material/ReadMore';
+import SendIcon from '@mui/icons-material/Send';
+import RTL from "../../Rtl";
+import * as React from "react";
 function setPageNumberFunc(num) {
     return num
 }
@@ -61,6 +65,32 @@ export default function Comments() {
     return (
         <Grid container>
 
+            <Grid item xs={12}>
+                <Grid container alignItems={'center'} justifyContent={"space-between"} >
+                    <Grid item xs={1} >
+                        <Grid container alignItems={'center'} justifyContent={"center"}>
+                            <Grid item><Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg"/></Grid>
+
+                        </Grid>
+                    </Grid>
+                    <Grid item xs={11}>
+
+                        <TextField
+                            className={'commentInput'}
+                            type="text"
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment position="start">
+                                        <SendIcon />
+                                    </InputAdornment>
+                                ),
+                            }}
+                            // variant="standard"
+                        />
+
+                    </Grid>
+                </Grid>
+            </Grid>
             <Grid item xs={12}>
                 <List sx={{width: '100%', bgcolor: 'background.paper'}}>
                     {

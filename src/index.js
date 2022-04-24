@@ -18,7 +18,6 @@ import SplashScreen from "./Components/Features/SplashScreen";
 import TimeAgo from 'javascript-time-ago'
 // TimeAgo.addDefaultLocale(Fa);
 import {now, long,short,mini} from "./i18n/locales.fa";
-console.log("now, long,short,mini", now, long,short,mini)
 const SiteRoutes = lazy(() => import('./Routes'));
 const container = document.getElementById('root');
 const root = createRoot(container);
@@ -33,7 +32,7 @@ TimeAgo.addDefaultLocale({
     long: long,
     short: short,
     mini: mini,
-})
+});
 const outerTheme = createTheme({
     direction: 'rtl',
     palette: {
@@ -53,8 +52,9 @@ const outerTheme = createTheme({
 });
 root.render(
     <Suspense fallback={<SplashScreen/>}>
-        <CacheProvider value={cacheRtl}>
+
             <ThemeProvider theme={outerTheme}>
+                <CacheProvider value={cacheRtl}>
                 <I18nextProvider i18n={i18n}>
                     <BrowserRouter>
                         <Provider store={store}>
@@ -62,8 +62,9 @@ root.render(
                         </Provider>
                     </BrowserRouter>
                 </I18nextProvider>
+                </CacheProvider>
             </ThemeProvider>
-        </CacheProvider>
+
     </Suspense>,
 );
 

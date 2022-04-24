@@ -30,18 +30,20 @@ function Dashboard() {
         <>
         <Grid container spacing={2}>
             {/*<Grid item xs={dataBar?.rows?.length ? 8 : 12}>*/}
+            {/*<Grid item xs={12}>*/}
+                {/*<SkeletonRow/>*/}
+
+                {/*/!*{*!/*/}
+                   {/*/!*Object.keys( data).length &&  <SliderComponent/> || null*!/*/}
+                {/*/!*}*!/*/}
+
+            {/*</Grid>*/}
+
+
             <Grid item xs={12}>
-                <SkeletonRow/>
-
-                {/*{*/}
-                   {/*Object.keys( data).length &&  <SliderComponent/> || null*/}
-                {/*}*/}
-
-            </Grid>
-
-
-            <Grid item xs={12}>
-                <ProductsView type={'main'} rows={data['rows']}/>
+                {
+                    (data['rows'] && <ProductsView type={'main'} rows={data['rows']}/>) || <SkeletonRow rows={5}/>
+                }
             </Grid>
             {/*{*/}
             {/*(dataBar?.rows?.length && (*/}
