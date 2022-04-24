@@ -1,0 +1,86 @@
+
+@import "./assets/Resources/Fonts/IRANSans.css";
+body {
+  margin: 0;
+  font-family:IRANSans, Tahoma, sans-serif !important;
+}
+a{
+  text-decoration: none;
+}
+.splashScreen {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: #fff;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.splashScreen img{
+  width: 15%;
+}
+
+.siteLogo{
+  height: 54px;
+}
+.searchBox{
+    border-radius: 25px !important;
+}
+.searchInput{
+    width: 100% !important;
+
+}
+.searchInput input{
+    width: 100% !important;
+
+}
+body .owl-stage {
+  /*width: 100% !important;*/
+  /*height: 250px;*/
+  /*display:flex;*/
+  margin-bottom:5px
+}
+body .owl-stage .owl-item {
+}
+
+
+.owl-slider{
+  overflow: hidden;
+  width: calc(100vw - 32px);
+}
+
+
+@media screen and (min-width:600px) {
+  .owl-slider{
+    overflow: hidden;
+    width: calc(100vw - 48px);
+  }
+}
+
+.owl-theme .owl-nav [class*="owl-"]{
+  border-radius: 50% !important;
+  width: 30px;
+  height: 30px;
+  /*background: #cccccc !important;*/
+  border: 1px solid gray !important;
+}
+.owl-next{
+  position: absolute;
+  left: 0px;
+  top: 100px;
+}
+.owl-prev{
+  position: absolute;
+  right: 0px;
+  top: 100px;
+}
+.owl-theme .owl-nav [class*="owl-"]:hover {
+  background: #869791;
+  color: #FFF;
+  text-decoration: none;
+  border-radius: 50%;
+
+
+}
