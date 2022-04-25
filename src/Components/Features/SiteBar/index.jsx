@@ -20,6 +20,7 @@ import {Logo} from "../../../assets";
 import {useTranslation} from "react-i18next";
 
 import {DrawerChangeStatus} from '../../../Store/Slice/Site/Local/general.slice'
+import {Link} from "react-router-dom";
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
@@ -130,29 +131,8 @@ export default function SiteBarComponent() {
                 horizontal: 'right',
             }}
             open={isMobileMenuOpen}
-            onClose={handleMobileMenuClose}
         >
-            {/*<MenuItem>*/}
-                {/*<IconButton size="large" aria-label="show 4 new mails" color="inherit">*/}
-                    {/*<Badge badgeContent={4} color="error">*/}
-                        {/*<MailIcon />*/}
-                    {/*</Badge>*/}
-                {/*</IconButton>*/}
-                {/*<p>Messages</p>*/}
-            {/*</MenuItem>*/}
-            {/*<MenuItem>*/}
-                {/*<IconButton*/}
-                    {/*size="large"*/}
-                    {/*aria-label="show 17 new notifications"*/}
-                    {/*color="inherit"*/}
-                {/*>*/}
-                    {/*<Badge badgeContent={17} color="error">*/}
-                        {/*<NotificationsIcon />*/}
-                    {/*</Badge>*/}
-                {/*</IconButton>*/}
-                {/*<p>Notifications</p>*/}
-            {/*</MenuItem>*/}
-            <MenuItem onClick={handleProfileMenuOpen}>
+            <MenuItem component={Link} to={'/panel/login'}>
                 <IconButton
                     size="large"
                     aria-label="account of current user"
@@ -162,7 +142,7 @@ export default function SiteBarComponent() {
                 >
                     <AccountCircle />
                 </IconButton>
-                <p>Profile</p>
+                {/*<p>Profile</p>*/}
             </MenuItem>
         </Menu>
     );
@@ -198,30 +178,30 @@ export default function SiteBarComponent() {
                     </Box>
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                         <IconButton
+                        component={Link} to={'/panel/login'}
                             size="large"
                             edge="end"
                             aria-label="account of current user"
                             aria-controls={menuId}
                             aria-haspopup="true"
-                            onClick={handleProfileMenuOpen}
                             color="inherit"
                         >
                             <AccountCircle />
                         </IconButton>
                     </Box>
-                    <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-                        <IconButton
+                    {/*<Box sx={{ display: { xs: 'flex', md: 'none' } }}>*/}
+                        {/*<IconButton*/}
 
-                            size="large"
-                            aria-label="show more"
-                            aria-controls={mobileMenuId}
-                            aria-haspopup="true"
-                            onClick={handleMobileMenuOpen}
-                            color="inherit"
-                        >
-                            <MoreIcon />
-                        </IconButton>
-                    </Box>
+                            {/*size="large"*/}
+                            {/*aria-label="show more"*/}
+                            {/*aria-controls={mobileMenuId}*/}
+                            {/*aria-haspopup="true"*/}
+                            {/*onClick={handleMobileMenuOpen}*/}
+                            {/*color="inherit"*/}
+                        {/*>*/}
+                            {/*<MoreIcon />*/}
+                        {/*</IconButton>*/}
+                    {/*</Box>*/}
                 </Toolbar>
             </AppBar>
             {renderMobileMenu}

@@ -27,4 +27,39 @@ export const GetAssetUrl = (state, id, type, versionCode = 0, index = 0, quality
 
     }
 
+};
+
+
+export const ApiGeneralParameter ={
+    marketPort:2,
+    marketVersion:40803
+};
+
+
+export const SnackbarOptions={
+    SUCCESS:{
+        variant:'success'
+    },
+    ERROR:{
+        variant:'error'
+    },
+    INFO:{
+        variant:'info'
+    },
+    WARNINNG:{
+        variant:'warning'
+    }
+
+};
+
+
+export const GetErrorMessage = (errorCode)=>{
+    let errors ={
+        101 : 'captchaExpired',
+        104 : 'captchaSecurity',
+        109 : 'mobileSecurity',
+        170 : 'captchaError',
+    }
+
+    return errors[errorCode]
 }

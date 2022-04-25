@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import  panelUserReducer from './Panel/user.slice'
+import  panelAccountReducer from './Panel/account.slice'
 export default combineReducers({
-  panelUser:panelUserReducer
+  panelAccount:panelAccountReducer
 })

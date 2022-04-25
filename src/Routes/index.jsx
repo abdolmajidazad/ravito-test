@@ -17,11 +17,26 @@ import {PostLogin} from "../Layouts/Panel";
 import PreLogin from "../Layouts/Panel/PreLogin";
 import PanelDashboard from "../Screens/Panel/PostLogin/Dashboard";
 import PanelLogin from "../Screens/Panel/PreLogin/Login";
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect} from "react";
+import {GetErrorMessage, SnackbarOptions} from "../Action/Setting";
+import {SiteSnackbarDispatcher} from "../Store/Slice/Site/Local/general.slice";
+import {useSnackbar} from "notistack";
+import {useTranslation} from "react-i18next";
 
 
 
 function  SiteRoutes(){
-
+    const { enqueueSnackbar } = useSnackbar();
+    const {t} = useTranslation('translate');
+    const dispatch = useDispatch();
+    const { siteError} = useSelector(state=>state.site.siteLocalGeneral);
+    useEffect(()=>{
+        if(siteError){
+            enqueueSnackbar(siteError?.data?.errorMessage || t(GetErrorMessage(siteError?.data?.errorCode)),SnackbarOptions[siteError['type'] || 'ERROR']);
+            dispatch(SiteSnackbarDispatcher(null))
+        }
+    },[siteError]);
     return(
         <Routes>
             <Route element={<SiteLayout/>}>

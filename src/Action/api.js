@@ -5,7 +5,8 @@ import {
   apiCallSuccess,
   apiCallFailed,
 } from './api.action'
-// import { userLoggedOut } from '../slice/user.slice'
+import {ApiGeneralParameter} from "./Setting";
+import { SiteSnackbarDispatcher } from '../Store/Slice/Site/Local/general.slice'
 
 const api =
   ({ dispatch }) =>
@@ -15,6 +16,7 @@ const api =
 
     const { url, method, data, onStart, onSuccess, onError } = action.payload;
 
+    console.log("data dispatch", data)
     if (onStart) dispatch({ type: onStart })
 
     next(action);
@@ -22,14 +24,17 @@ const api =
     try {
       // const token = localStorage.getItem('authToken');
       const response = await axios.request({
-        baseURL: 'http://localhost:3000',
+        // baseURL: 'http://localhost:3000',
         url,
         method,
-        data,
-        headers: {
-        //   Authorization: `Bearer ${token}`,
-          'Access-Control-Allow-Origin': "*"
+        data:{
+          ...data,
+          ...ApiGeneralParameter
         },
+        // headers: {
+        // //   Authorization: `Bearer ${token}`,
+        //   'Access-Control-Allow-Origin': "*"
+        // },
       });
 
       if (method === 'get') {
@@ -51,16 +56,40 @@ const api =
             data: response.data,
           })
         );
-        if (onSuccess)
-          dispatch({
-            type: onSuccess,
-            payload: {
-              status: response.status,
-              statusText: response.statusText,
-              data: response.data,
-              request:data
-            },
-          })
+        if (onSuccess){
+          if(response?.data?.errorCode===0 || !response?.data?.errorCode){
+            dispatch({
+              type: onSuccess,
+              payload: {
+                status: response.status,
+                statusText: response.statusText,
+                data: response.data,
+                request:data
+              },
+            });
+            // dispatch(SiteSnackbarDispatcher({
+            //   type: 'SUCCESS',
+            //   data:response.data
+            // }))
+          }else{
+            dispatch({
+              type: onError,
+              payload: {
+                status: response.status,
+                statusText: response.statusText,
+                data: response.data,
+                request:data
+              },
+            });
+            dispatch(SiteSnackbarDispatcher({
+              type: 'ERROR',
+              data:response.data
+            }))
+          }
+
+
+        }
+
 
         // toast.success(response.statusText)
       }

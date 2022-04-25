@@ -8,7 +8,7 @@ import {I18nextProvider} from 'react-i18next';
 import i18n from './i18n';
 import Fa from './i18n/Fa';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
-import { pink} from '@mui/material/colors';
+import {pink} from '@mui/material/colors';
 import rtlPlugin from 'stylis-plugin-rtl';
 import {CacheProvider} from '@emotion/react';
 import createCache from '@emotion/cache';
@@ -17,7 +17,10 @@ import './index.css';
 import SplashScreen from "./Components/Features/SplashScreen";
 import TimeAgo from 'javascript-time-ago'
 // TimeAgo.addDefaultLocale(Fa);
-import {now, long,short,mini} from "./i18n/locales.fa";
+import {now, long, short, mini} from "./i18n/locales.fa";
+import {SnackbarProvider} from 'notistack';
+import {Slide} from "@mui/material";
+
 const SiteRoutes = lazy(() => import('./Routes'));
 const container = document.getElementById('root');
 const root = createRoot(container);
@@ -52,19 +55,33 @@ const outerTheme = createTheme({
 });
 root.render(
     <Suspense fallback={<SplashScreen/>}>
-
+        <SnackbarProvider
+            maxSnack={3}
+            anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'right',
+            }}
+            TransitionComponent={Slide}
+            // iconVariant={{
+            //     success: '✅',
+            //     error: '✖️',
+            //     warning: '⚠️',
+            //     info: 'ℹ️',
+            // }}
+            // preventDuplicate
+        >
             <ThemeProvider theme={outerTheme}>
                 <CacheProvider value={cacheRtl}>
-                <I18nextProvider i18n={i18n}>
-                    <BrowserRouter>
-                        <Provider store={store}>
-                            <SiteRoutes/>
-                        </Provider>
-                    </BrowserRouter>
-                </I18nextProvider>
+                    <I18nextProvider i18n={i18n}>
+                        <BrowserRouter>
+                            <Provider store={store}>
+                                <SiteRoutes/>
+                            </Provider>
+                        </BrowserRouter>
+                    </I18nextProvider>
                 </CacheProvider>
             </ThemeProvider>
-
+        </SnackbarProvider>
     </Suspense>,
 );
 

@@ -95,3 +95,8 @@ body .owl-stage .owl-item {
 .commentInput svg{
  transform: rotate(180deg);
 }
+
+
+.ltr-data{
+  direction: ltr;
+}
