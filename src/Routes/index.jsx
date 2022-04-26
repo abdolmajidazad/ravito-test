@@ -2,8 +2,6 @@ import {Routes, Route} from 'react-router-dom'
 import SiteLayout from "../Layouts/Site";
 
 
-
-
 import Dashboard from "../Screens/Site/Dashboard";
 import Category from "../Screens/Site/Category";
 import SearchPage from "../Screens/Site/Search";
@@ -23,6 +21,7 @@ import {GetErrorMessage, SnackbarOptions} from "../Action/Setting";
 import {SiteSnackbarDispatcher} from "../Store/Slice/Site/Local/general.slice";
 import {useSnackbar} from "notistack";
 import {useTranslation} from "react-i18next";
+import {UserData} from "../Store/Slice/Panel/account.slice";
 
 
 
@@ -30,12 +29,16 @@ function  SiteRoutes(){
     const { enqueueSnackbar } = useSnackbar();
     const {t} = useTranslation('translate');
     const dispatch = useDispatch();
+    useEffect(()=>{
+        dispatch(UserData())
+    },[dispatch]);
     const { siteError} = useSelector(state=>state.site.siteLocalGeneral);
     useEffect(()=>{
         if(siteError){
             enqueueSnackbar(siteError?.data?.errorMessage || t(GetErrorMessage(siteError?.data?.errorCode)),SnackbarOptions[siteError['type'] || 'ERROR']);
             dispatch(SiteSnackbarDispatcher(null))
         }
+        //eslint-disable-next-line react-hooks/exhaustive-deps
     },[siteError]);
     return(
         <Routes>

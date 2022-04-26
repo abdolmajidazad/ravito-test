@@ -6,9 +6,8 @@ import * as serviceWorker from './serviceWorker';
 import {BrowserRouter} from 'react-router-dom';
 import {I18nextProvider} from 'react-i18next';
 import i18n from './i18n';
-import Fa from './i18n/Fa';
-import {createTheme, ThemeProvider} from '@mui/material/styles';
-import {pink} from '@mui/material/colors';
+import {createTheme, PaletteColorOptions, ThemeProvider} from '@mui/material/styles';
+// import {pink} from '@mui/material/colors';
 import rtlPlugin from 'stylis-plugin-rtl';
 import {CacheProvider} from '@emotion/react';
 import createCache from '@emotion/cache';
@@ -16,7 +15,6 @@ import {prefixer} from 'stylis';
 import './index.css';
 import SplashScreen from "./Components/Features/SplashScreen";
 import TimeAgo from 'javascript-time-ago'
-// TimeAgo.addDefaultLocale(Fa);
 import {now, long, short, mini} from "./i18n/locales.fa";
 import {SnackbarProvider} from 'notistack';
 import {Slide} from "@mui/material";
@@ -39,9 +37,13 @@ TimeAgo.addDefaultLocale({
 const outerTheme = createTheme({
     direction: 'rtl',
     palette: {
+        // mode: 'dark',
         primary: {
-            main: pink[500],
+            main: '#EF306F',
         },
+        secondary:{
+            main: '#FFFFFF',
+        }
     },
     typography: {
         fontFamily: [

@@ -1,18 +1,12 @@
 import * as React from 'react';
-import {useParams, Link} from "react-router-dom";
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
+import {useParams} from "react-router-dom";
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {Fetch} from "../../../Store/Slice/Site/content.slice";
-import {GetAssetUrl} from "../../../Action/Setting";
 import Player from "../../../Components/Features/Player";
 import {Comments, RelatedRows} from "../../../Components/Features/ProductsView/Templates";
-import ReactTimeAgo from "../../../Components/Features/ProductsView/Templates/ClipItem";
 import {Rating} from "@mui/material";
 
 
@@ -34,7 +28,7 @@ export default function ContentPage() {
 
 
             <Grid container spacing={2}>
-                <Grid item xs={12} sm={6} md={9}>
+                <Grid item xs={12} sm={6} md={8}>
                     <Player/>
 
                     <Grid container alignItems={'center'} justifyContent={'space-between'}>
@@ -63,7 +57,7 @@ export default function ContentPage() {
                         <Comments/>
                     </Grid>
                 </Grid>
-                <Grid item xs={12} sm={6} md={3}>
+                <Grid item xs={12} sm={6} md={4}>
                     <RelatedRows relatedRows={data.relatedRows} columns={{xs: 12, sm: 12, md: 12}}/>
                 </Grid>
             </Grid>

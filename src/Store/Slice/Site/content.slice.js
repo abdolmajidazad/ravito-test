@@ -1,6 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit'
 import {apiCallBegan} from '../../../Action/api.action'
-import {GetAssetUrl} from "../../../Action/Setting";
 
 const initialState = {
     status: null,

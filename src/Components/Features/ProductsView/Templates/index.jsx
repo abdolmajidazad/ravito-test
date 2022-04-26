@@ -4,4 +4,5 @@ import ClipItem from './ClipItem';
 import RelatedRows from './RelatedRows';
 import Comments from './Comments';
 import SkeletonRow from './SkeletonRow';
-export {CategoryRow, CategoryBar, ClipItem, RelatedRows, Comments, SkeletonRow}
+import RowSlider from './RowSlider';
+export {CategoryRow, CategoryBar, ClipItem, RelatedRows, Comments, SkeletonRow, RowSlider}

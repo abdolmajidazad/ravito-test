@@ -1,4 +1,4 @@
-import {Fragment, useState, useMemo} from 'react';
+import {Fragment, useState} from 'react';
 import List from '@mui/material/List';
 import {ListItem,InputAdornment} from '@mui/material';
 import Divider from '@mui/material/Divider';
@@ -17,24 +17,15 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import {useTranslation} from "react-i18next";
 import ReadMoreIcon from '@mui/icons-material/ReadMore';
 import SendIcon from '@mui/icons-material/Send';
-import RTL from "../../Rtl";
-import * as React from "react";
-function setPageNumberFunc(num) {
-    return num
-}
 
 export default function Comments() {
     const {data = {}, loading = false, nextPage=false, pageNumber=0} = useSelector(state => state.site.siteComment);
-    // const [pageNumber, setPageNumber] = useState(0);
     const [siteParams, setSiteParams] = useState({});
     const {t} = useTranslation('translate');
     console.log("data", data);
     const dispatch = useDispatch();
     const params = useParams();
-
-    // useMemo(() => setPageNumberFunc(pageNumber), [pageNumber])
     useEffect(() => {
-        console.log("siteParams", siteParams, params)
         setSiteParams(params);
         if(siteParams['uuid'] && siteParams['uuid']!==params['uuid']){
             dispatch(resetState());
@@ -55,13 +46,8 @@ export default function Comments() {
                 uuid: params['uuid'],
             }));
         }
-
+        //eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch, params, pageNumber]);
-    // useEffect(() => {
-    //     setPageNumber(0);
-    //     dispatch(resetState());
-    // }, [dispatch, params]);
-    console.log("data", data)
     return (
         <Grid container>
 
@@ -107,13 +93,13 @@ export default function Comments() {
                                                     {comment['userName']}
                                                 </Grid>
                                                 {
-                                                    comment['subdate'] && (
+                                                    (comment['subdate'] && (
                                                         <Grid item>
                                                             <Typography variant={'caption'} color="text.secondary">
                                                                 <ReactTimeAgo
                                                                     date={new Date(comment['subdate'])}/></Typography>
                                                         </Grid>
-                                                    ) || null
+                                                    )) || null
                                                 }
 
                                             </Grid>
@@ -132,7 +118,7 @@ export default function Comments() {
                 </List>
             </Grid>
             {
-                nextPage && (
+                (nextPage && (
                     <Grid item xs={12}>
                         <Grid container justifyContent={'flex-end'}>
                             <Grid item>
@@ -148,7 +134,7 @@ export default function Comments() {
                             </Grid>
                         </Grid>
                     </Grid>
-                ) || null
+                )) || null
             }
 
         </Grid>

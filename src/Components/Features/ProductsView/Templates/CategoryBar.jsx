@@ -1,5 +1,4 @@
 import {Grid} from '@mui/material';
-import {Link} from "react-router-dom";
 import {ClipItem} from "./index";
 import * as React from "react";
 function CategoryBar(props){

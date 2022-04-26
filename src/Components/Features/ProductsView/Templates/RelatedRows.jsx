@@ -12,7 +12,9 @@ function RelatedRows(props) {
 
                     <Grid container spacing={1}>
                         {related?.items?.map((relatedItem, indexItem) => (
-                            <ClipItem key={'relative-row-' + indexItem.toString()} sonItem={relatedItem}
+                            <ClipItem key={'relative-row-' + indexItem.toString()}
+                                      sonItem={relatedItem}
+                                      itemAlignment={'Horizontal'}
                                       columns={columns}/>
                         ))}
                     </Grid>

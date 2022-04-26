@@ -56,7 +56,7 @@ app.all("/*", function (req, res) {
                 if(myArgs && myArgs.length && myArgs[0]==='https'){
                     apiProxy.web(req, res, {target: 'http://www.raavito.com'});
                 }else{
-                    apiProxy.web(req, res, {target: 'http://www.raavito.com'});
+                    apiProxy.web(req, res, {target: 'http://www.raavito.com:8280'});
                 }
 
 

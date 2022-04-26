@@ -1,6 +1,4 @@
-import {Grid, Card, CardMedia, CardContent, Typography} from '@mui/material';
-import {Link} from 'react-router-dom';
-import {GetAssetUrl} from "../../../../Action/Setting";
+import {Grid} from '@mui/material';
 import * as React from "react";
 import {ClipItem} from "./index";
 
@@ -12,7 +10,12 @@ function CategoryRow(props) {
         <Grid container spacing={2}>
             {
                 sonItems.map((sonItem, index) => (
-                <ClipItem  key={'category-row-'+index.toString()} sonItem={sonItem} columns={{xs:6,sm:4,md:3}}/>
+                <ClipItem
+                    key={'category-row-'+index.toString()}
+                    sonItem={sonItem}
+                    columns={{xs:6,sm:4,md:3}}
+                    itemAlignment={'Vertical'}
+                />
                 ))
             }
 

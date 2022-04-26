@@ -1,22 +1,19 @@
-import {useEffect, memo, useState} from 'react';
-// import OpenPlayerJS from 'openplayer';
-
-// import {Helmet} from "react-helmet";
+import {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import {Stream} from "../../../Store/Slice/Site/download.slice";
 import {useDispatch, useSelector} from "react-redux";
 import '../../../assets/Resources/openplayer/openplayer.min.css';
-// import 'openplayer/dist/openplayer.min.css';
 import {GetAssetUrl} from "../../../Action/Setting";
 
 function Player() {
-    const {data = {}} = useSelector(state => state.site.siteDownload)
-    const [playerObj, setPlayer] = useState();
+    const {data = {}} = useSelector(state => state.site.siteDownload);
     const [playerLink, setPlayerLink] = useState();
     let dispatch = useDispatch();
     useEffect(() => {
         if (Object.keys(data).length)
             setPlayerLink(`http://www.raavito.com/ws/dl/movie/${data['downloadTicket']}/${params['uuid']}.mpd`);
+
+        //eslint-disable-next-line react-hooks/exhaustive-deps
     }, [data]);
     useEffect(() => {
         if (playerLink && Object.keys(data).length) {
@@ -85,7 +82,7 @@ function Player() {
 
 
     }
-    return playerLink && (
+    return (playerLink && (
         <div style={{direction: 'ltr', width:'100%'}} >
             <video
                 style={{width:'100%'}}
@@ -99,7 +96,7 @@ function Player() {
             </video>
 
         </div>
-    ) || null
+    )) || null
 
 }
 

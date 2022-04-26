@@ -1,32 +1,28 @@
 import {useState} from 'react';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
-import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import MoreIcon from '@mui/icons-material/MoreVert';
 import {Logo} from "../../../assets";
 import {useTranslation} from "react-i18next";
-
 import {DrawerChangeStatus} from '../../../Store/Slice/Site/Local/general.slice'
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
+import {DrawerMenu} from '../SiteMenu'
+import {SignOut} from "../../../Store/Slice/Panel/account.slice";
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    backgroundColor: alpha(theme.palette.common.black, 0.15),
     '&:hover': {
-        backgroundColor: alpha(theme.palette.common.white, 0.25),
+        backgroundColor: alpha(theme.palette.common.black, 0.25),
     },
     marginRight: theme.spacing(2),
     marginLeft: 0,
@@ -48,7 +44,6 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: 'inherit',
     '& .MuiInputBase-input': {
         padding: theme.spacing(1, 1, 1, 0),
         // vertical padding + font size from searchIcon
@@ -63,6 +58,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function SiteBarComponent() {
     const dispatch = useDispatch();
+    const location = useLocation();
+    console.log("location", location.pathname)
+    const {userData = {}} = useSelector(state => state.panel.panelAccount);
     const [anchorEl, setAnchorEl] = useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
 
@@ -70,11 +68,6 @@ export default function SiteBarComponent() {
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-    const handleProfileMenuOpen = (event) => {
-        console.log("DrawerOpen")
-        dispatch(DrawerChangeStatus());
-        setAnchorEl(event.currentTarget);
-    };
 
     const handleMobileMenuClose = () => {
         setMobileMoreAnchorEl(null);
@@ -85,14 +78,10 @@ export default function SiteBarComponent() {
         handleMobileMenuClose();
     };
 
-    const handleOpenDrawer = (event) => {
-        console.log("DrawerOpen")
+    const handleOpenDrawer = () => {
         dispatch(DrawerChangeStatus());
     };
 
-    const handleMobileMenuOpen = (event) => {
-        setMobileMoreAnchorEl(event.currentTarget);
-    };
 
     const menuId = 'primary-search-account-menu';
     const renderMenu = (
@@ -138,7 +127,6 @@ export default function SiteBarComponent() {
                     aria-label="account of current user"
                     aria-controls="primary-search-account-menu"
                     aria-haspopup="true"
-                    color="inherit"
                 >
                     <AccountCircle />
                 </IconButton>
@@ -149,25 +137,33 @@ export default function SiteBarComponent() {
 
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar  position="fixed">
+            <AppBar  position="fixed" color={"secondary"}>
                 <Toolbar>
-                    <IconButton
-                        size="large"
-                        edge="start"
-                        color="inherit"
-                        onClick={handleOpenDrawer}
-                        aria-label="open drawer"
-                        sx={{ mr: 2 }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
+                    {
+                        (location.pathname==='/' && (
+                            <IconButton
+                                size="large"
+                                edge="start"
+                                onClick={handleOpenDrawer}
+                                aria-label="open drawer"
+                                sx={{ mr: 2 }}
+                            >
+                                <MenuIcon />
+                            </IconButton>
+                        )) || <DrawerMenu />
+                    }
 
+
+
+
+                    <Link to={'/'}>
                         <img className={'siteLogo'} src={Logo} alt={t('siteName')}/>
+                    </Link>
 
                     <Box sx={{ flexGrow: 1 }}>
                         <Search className={'searchBox'}>
                             <SearchIconWrapper>
-                                <SearchIcon />
+                                <SearchIcon  color={'disabled'}/>
                             </SearchIconWrapper>
                             <StyledInputBase
                                 className={'searchInput'}
@@ -177,31 +173,35 @@ export default function SiteBarComponent() {
                         </Search>
                     </Box>
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                        <IconButton
-                        component={Link} to={'/panel/login'}
-                            size="large"
-                            edge="end"
-                            aria-label="account of current user"
-                            aria-controls={menuId}
-                            aria-haspopup="true"
-                            color="inherit"
-                        >
-                            <AccountCircle />
-                        </IconButton>
-                    </Box>
-                    {/*<Box sx={{ display: { xs: 'flex', md: 'none' } }}>*/}
-                        {/*<IconButton*/}
 
-                            {/*size="large"*/}
-                            {/*aria-label="show more"*/}
-                            {/*aria-controls={mobileMenuId}*/}
-                            {/*aria-haspopup="true"*/}
-                            {/*onClick={handleMobileMenuOpen}*/}
-                            {/*color="inherit"*/}
-                        {/*>*/}
-                            {/*<MoreIcon />*/}
-                        {/*</IconButton>*/}
-                    {/*</Box>*/}
+                        {
+                            (userData['userName'] && (
+                                <IconButton
+                                    size="large"
+                                    edge="end"
+                                    aria-label="account of current user"
+                                    aria-controls={menuId}
+                                    aria-haspopup="true"
+                                    onClick={()=>dispatch(SignOut({}))}
+                                >
+                                    <AccountCircle />
+                                </IconButton>
+                            )) || (
+                                <IconButton
+                                    component={Link} to={'/panel/login'}
+                                    size="large"
+                                    edge="end"
+                                    aria-label="account of current user"
+                                    aria-controls={menuId}
+                                    aria-haspopup="true"
+                                >
+                                    <AccountCircle />
+                                </IconButton>
+                            )
+                        }
+
+                    </Box>
+
                 </Toolbar>
             </AppBar>
             {renderMobileMenu}
