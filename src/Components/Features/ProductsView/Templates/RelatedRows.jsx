@@ -4,7 +4,6 @@ import * as React from "react";
 
 function RelatedRows(props) {
     const {relatedRows = [], columns = {xs: 6, sm: 4, md: 3}} = props;
-    console.log("relatedRows", relatedRows)
     return (
         <Grid container spacing={1}>
             {relatedRows?.map((related, index) => (

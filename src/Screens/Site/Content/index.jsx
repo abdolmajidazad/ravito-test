@@ -12,7 +12,6 @@ import {Rating} from "@mui/material";
 
 export default function ContentPage() {
     const {data = {}} = useSelector(state => state.site.siteContent);
-    console.log("data", data);
     const dispatch = useDispatch();
     const params = useParams();
     useEffect(() => {

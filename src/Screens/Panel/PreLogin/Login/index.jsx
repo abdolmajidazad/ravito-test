@@ -50,7 +50,6 @@ export default function SignInSide() {
         event.preventDefault();
 
         let errorData = validateAndSave(['cellPhoneNo', 'captcha'], formData);
-        console.log("errorData", errorData)
         if (!Object.keys(errorData).length) {
             dispatch(startLoading());
             dispatch(ReqOTP({
@@ -81,7 +80,6 @@ export default function SignInSide() {
         event.preventDefault();
 
         let errorData = validateAndSave(['cellPhoneNo', 'password','userName'], formData);
-        console.log("errorData", errorData)
         if (!Object.keys(errorData).length) {
             dispatch(startLoading());
             dispatch(Sign({
@@ -123,8 +121,6 @@ export default function SignInSide() {
         setFormData(data);
     };
     const validateValue = (parameter, formData, position) => {
-        console.log("parameter, formData = formData, position", parameter, formData, position)
-
         if (!formData[parameter]) {
             const errors = {
                 ...errorData,

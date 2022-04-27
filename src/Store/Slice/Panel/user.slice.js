@@ -7,12 +7,10 @@ const slice = createSlice({
   initialState: { error: '' ,data:{}},
   reducers: {
     userLoggedIn: (state, action) => {
-        console.log("user, action3333", state.data, action)
         state.data={mammmama:3232};
         state.error = ''
     },
     userLoginFailed: (user, action) => {
-        console.log("user, action userLoginFailed", user, action)
       user.error = action.payload.error
       localStorage.clear()
     },

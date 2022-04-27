@@ -4,6 +4,7 @@ import SiteLayout from "../Layouts/Site";
 
 import Dashboard from "../Screens/Site/Dashboard";
 import Category from "../Screens/Site/Category";
+import CategoryList from "../Screens/Site/Category/CategoryList";
 import SearchPage from "../Screens/Site/Search";
 import List from "../Screens/Site/List";
 import ContentPage from "../Screens/Site/Content";
@@ -22,6 +23,7 @@ import {SiteSnackbarDispatcher} from "../Store/Slice/Site/Local/general.slice";
 import {useSnackbar} from "notistack";
 import {useTranslation} from "react-i18next";
 import {UserData} from "../Store/Slice/Panel/account.slice";
+import NotFound from "../Screens/NotFound";
 
 
 
@@ -47,8 +49,8 @@ function  SiteRoutes(){
             </Route>
             <Route element={<SiteLayout menuType={'drawer'}/>}>
                 <Route element={<Category/>}>
-                    {/*<Route path="/list/:pageNumber" element={<CategoryList/>} />*/}
-                    {/*<Route path="/list/:pageNumber/:categoryId" element={<CategoryList/>} />*/}
+                    <Route path="/category/:pageNumber" element={<CategoryList/>} />
+                    <Route path="/category/:pageNumber/:catId" element={<CategoryList/>} />
                 </Route>
                 <Route path="/list/:catId/:sort/:nationality/:payment/:boundary/:pvideo/:filterMask/:pageNumber" element={<List/>} />
                 <Route path="/search/:text/:pageNumber" element={<SearchPage/>} />
@@ -66,6 +68,7 @@ function  SiteRoutes(){
                     {/*</Route>*/}
                 </Route>
             </Route>
+            <Route path="*" element={<NotFound />} />
         </Routes>
     )
 

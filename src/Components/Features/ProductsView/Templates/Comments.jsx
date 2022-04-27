@@ -22,7 +22,6 @@ export default function Comments() {
     const {data = {}, loading = false, nextPage=false, pageNumber=0} = useSelector(state => state.site.siteComment);
     const [siteParams, setSiteParams] = useState({});
     const {t} = useTranslation('translate');
-    console.log("data", data);
     const dispatch = useDispatch();
     const params = useParams();
     useEffect(() => {

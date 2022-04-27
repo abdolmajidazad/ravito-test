@@ -16,7 +16,6 @@ const api =
 
     const { url, method, data, onStart, onSuccess, onError } = action.payload;
 
-    console.log("data dispatch", data)
     if (onStart) dispatch({ type: onStart })
 
     next(action);

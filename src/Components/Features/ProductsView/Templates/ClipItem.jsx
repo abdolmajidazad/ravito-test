@@ -66,7 +66,7 @@ function ClipItem(props) {
     };
     const HorizontalItem = () => {
         return (
-            <Grid component={Link} to={`/content/${sonItem['uuid']}`} itemxs={columns['xs']} sm={columns['sm']} md={columns['md']}>
+            <Grid component={Link} to={`/content/${sonItem['uuid']}`} item xs={columns['xs']} sm={columns['sm']} md={columns['md']}>
                 <Card
                     sx={{height: '100%', display: 'flex', flexDirection: 'column', boxShadow: 'unset', borderRadius: 0}}
                 >

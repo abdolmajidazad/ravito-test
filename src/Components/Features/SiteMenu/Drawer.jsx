@@ -11,7 +11,6 @@ export default function SwipeableTemporaryDrawer() {
     });
 
     const toggleDrawer = (anchor, open) => (event) => {
-        console.log("anchor, open----", anchor, open, event)
         if (
             event &&
             event.type === 'keydown' &&

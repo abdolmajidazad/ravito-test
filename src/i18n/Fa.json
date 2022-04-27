@@ -26,5 +26,10 @@
   "confirmOtm": "تایید کد",
   "otp" : "کد تایید",
   "followedVideos": "ویدیوهای دنبال شدگان",
-  "favoriteVideos": "ویدیوهای پسند شده"
+  "favoriteVideos": "ویدیوهای پسند شده",
+  "alphabet": "الفبا",
+  "downloadCount": "تعداد دانلود",
+  "newArrival": "تازه ترین ها",
+  "mostStar": "ستاره دارترین ها",
+  "NoContentForShow" : "محتوایی برای نمایش وجود ندارد."
 }

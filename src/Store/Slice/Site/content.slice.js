@@ -20,6 +20,7 @@ const slice = createSlice({
         },
         fetchSuccess: (state, action) => {
             const {status, statusText, data} = action.payload;
+            document.title = data.title;
             state.status = status;
             state.statusText = statusText;
             state.data = data;

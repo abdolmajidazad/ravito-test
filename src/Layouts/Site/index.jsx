@@ -5,7 +5,6 @@ import {Grid, Container, CssBaseline} from '@mui/material';
 import SiteBarComponent from "../../Components/Features/SiteBar";
 import  {FixedMenu} from "../../Components/Features/SiteMenu";
 import {useSelector} from "react-redux";
-import {useIsWidthDown, useIsWidthUp} from "../../Action/Setting";
 import StickyFooter from "./StickyFooter";
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
     ({ theme, open }) => ({
@@ -27,23 +26,14 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
 );
 function SiteLayout(props) {
     const {menuType='fixed'} =props;
-    console.log("menuType", menuType)
     const location = useLocation();
 
     const {DrawerOpen, drawerWidth} = useSelector(state=>state.site.siteLocalGeneral);
-    const isMdUp = useIsWidthUp("md");
-    const isMdDown = useIsWidthDown("md");
-    console.log("isMdDown", isMdDown)
-    console.log("isMdUp", isMdUp)
-    // const [tab, setTab] =  useState('main');
-    useEffect(() => {
-        if (location.pathname.startsWith('/category')) {
-            // setTab('category')
-        } else {
-            // setTab('main')
-        }
+    // const isMdUp = useIsWidthUp("md");
+    // const isMdDown = useIsWidthDown("md");
 
-    }, [location]);
+    useEffect(()=>{
+    },[location]);
     return (
 
         <Grid container>

@@ -14,7 +14,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import {Logo} from "../../../assets";
 import {useTranslation} from "react-i18next";
 import {DrawerChangeStatus} from '../../../Store/Slice/Site/Local/general.slice'
-import {Link, useLocation} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {DrawerMenu} from '../SiteMenu'
 import {SignOut} from "../../../Store/Slice/Panel/account.slice";
 const Search = styled('div')(({ theme }) => ({
@@ -59,8 +59,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function SiteBarComponent(props) {
     const {menuType='fixed'} = props;
     const dispatch = useDispatch();
-    const location = useLocation();
-    console.log("location", location.pathname)
     const {userData = {}} = useSelector(state => state.panel.panelAccount);
     const [anchorEl, setAnchorEl] = useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);

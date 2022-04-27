@@ -8,12 +8,10 @@ const slice = createSlice({
     },
     reducers: {
         DrawerChangeStatus: (state, action) => {
-            console.log("state, action", state.DrawerOpen, action)
             state.DrawerOpen = !state.DrawerOpen;
 
         },
         SiteSnackbarDispatcher: (state, action) => {
-            console.log("state, action", action)
             state.siteError = action.payload;
 
         }
