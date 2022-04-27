@@ -56,7 +56,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
-export default function SiteBarComponent() {
+export default function SiteBarComponent(props) {
+    const {menuType='fixed'} = props;
     const dispatch = useDispatch();
     const location = useLocation();
     console.log("location", location.pathname)
@@ -140,7 +141,7 @@ export default function SiteBarComponent() {
             <AppBar  position="fixed" color={"secondary"}>
                 <Toolbar>
                     {
-                        (location.pathname==='/' && (
+                        (menuType==='fixed' && (
                             <IconButton
                                 size="large"
                                 edge="start"

@@ -5,12 +5,12 @@ import ReactTimeAgo from 'react-time-ago'
 import {LazyLoadImage} from "react-lazy-load-image-component";
 
 function ClipItem(props) {
-    const {sonItem = {}, columns = {xs: 12, sm: 6, md: 4}, itemAlignment = 'Vertical'} = props;
+    const {sonItem = {}, columns = {xs: 12, sm: 12, md: 12}, itemAlignment = 'Vertical'} = props;
 
 
     const VerticalItem = () => {
         return (
-            <Grid component={Link} to={`/content/${sonItem['uuid']}`} item xs={columns['xs']}>
+            <Grid component={Link} to={`/content/${sonItem['uuid']}`} item xs={columns['xs']} sm={columns['sm']} md={columns['md']}>
                 <Card
                     sx={{height: '100%', display: 'flex', flexDirection: 'column', boxShadow: 'unset', borderRadius: 0}}
                 >
@@ -66,7 +66,7 @@ function ClipItem(props) {
     };
     const HorizontalItem = () => {
         return (
-            <Grid component={Link} to={`/content/${sonItem['uuid']}`} item xs={columns['xs']}>
+            <Grid component={Link} to={`/content/${sonItem['uuid']}`} itemxs={columns['xs']} sm={columns['sm']} md={columns['md']}>
                 <Card
                     sx={{height: '100%', display: 'flex', flexDirection: 'column', boxShadow: 'unset', borderRadius: 0}}
                 >

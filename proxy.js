@@ -56,6 +56,8 @@ app.all("/*", function (req, res) {
                 if(myArgs && myArgs.length && myArgs[0]==='https'){
                     apiProxy.web(req, res, {target: 'http://www.raavito.com'});
                 }else{
+                    console.log("req['url']", `http://${req.get('host').split(":")[0]}:3000`+ req['url'])
+
                     apiProxy.web(req, res, {target: 'http://www.raavito.com:8280'});
                 }
 
@@ -64,7 +66,7 @@ app.all("/*", function (req, res) {
         } catch (error) {
         }
     } else {
-        console.log("req['url']", `http://${req.get('host').split(":")[0]}:8000`+ req['url'])
+        // console.log("req['url']", `http://${req.get('host').split(":")[0]}:8000`+ req['url'])
         apiProxy.web(req, res, {target: `http://${req.get('host').split(":")[0]}:3000`});
     }
 });

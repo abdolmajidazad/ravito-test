@@ -7,6 +7,7 @@ import  siteSearchReducer from './Site/search.slice';
 import  siteContentReducer from './Site/content.slice';
 import  siteDownloadReducer from './Site/download.slice';
 import  siteCommentReducer from './Site/comment.slice';
+import  siteListReducer from './Site/list.slice';
 
 
 
@@ -20,6 +21,7 @@ export default combineReducers({
   siteContent:siteContentReducer,
   siteDownload:siteDownloadReducer,
   siteComment:siteCommentReducer,
+  siteList:siteListReducer,
 
 
 

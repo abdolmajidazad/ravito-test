@@ -6,6 +6,7 @@ import SiteBarComponent from "../../Components/Features/SiteBar";
 import  {FixedMenu} from "../../Components/Features/SiteMenu";
 import {useSelector} from "react-redux";
 import {useIsWidthDown, useIsWidthUp} from "../../Action/Setting";
+import StickyFooter from "./StickyFooter";
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
     ({ theme, open }) => ({
         // flexGrow: 1,
@@ -24,7 +25,9 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
         }),
     }),
 );
-function SiteLayout() {
+function SiteLayout(props) {
+    const {menuType='fixed'} =props;
+    console.log("menuType", menuType)
     const location = useLocation();
 
     const {DrawerOpen, drawerWidth} = useSelector(state=>state.site.siteLocalGeneral);
@@ -46,25 +49,28 @@ function SiteLayout() {
         <Grid container>
             <CssBaseline />
 
-            <SiteBarComponent/>
+            <SiteBarComponent menuType={menuType}/>
             <Main open={DrawerOpen} drawerwidth={drawerWidth} style={{width:'100%'}}>
                 <Grid container >
                     {
-                        (!DrawerOpen && location.pathname==='/' && (
+                        ((!DrawerOpen && menuType==='fixed')  && (
                             <Grid item xs={2} style={{marginTop:60}}>
                                 <FixedMenu/>
                             </Grid>
                         ))
                     }
 
-                    <Grid item xs={(!DrawerOpen && location.pathname==='/') ? 10 : 12} style={{marginTop:75}}>
-                        <Container fluid={'xxl'} maxWidth={(!DrawerOpen && location.pathname==='/') ? "md" : 'l'}>
+                    <Grid item xs={(!DrawerOpen && menuType==='fixed') ? 10 : 12} style={{marginTop:75}}>
+                        <Container fluid={'xxl'} maxWidth={(!DrawerOpen && menuType==='fixed')  ? "md" : 'l'}>
                             <Outlet/>
                         </Container>
                     </Grid>
                 </Grid>
 
             </Main>
+           <Grid item xs={12}>
+               <StickyFooter/>
+           </Grid>
         </Grid>
     )
 }

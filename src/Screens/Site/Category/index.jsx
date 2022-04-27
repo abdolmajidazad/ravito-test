@@ -2,7 +2,7 @@ import {Link, useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {CategoryWs} from "../../../Store/Slice/Site/category.slice";
-import CategoryList from "./list";
+import CategoryList from "../List";
 import {Grid}  from '@mui/material';
 
 function Category() {

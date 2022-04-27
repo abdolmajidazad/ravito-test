@@ -5,4 +5,5 @@ import RelatedRows from './RelatedRows';
 import Comments from './Comments';
 import SkeletonRow from './SkeletonRow';
 import RowSlider from './RowSlider';
-export {CategoryRow, CategoryBar, ClipItem, RelatedRows, Comments, SkeletonRow, RowSlider}
+import ListView from './ListView';
+export {CategoryRow, CategoryBar, ClipItem, RelatedRows, Comments, SkeletonRow, RowSlider, ListView}

@@ -1,23 +1,23 @@
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {start} from "../../../Store/Slice/Site/start.slice";
+import {start, resetState} from "../../../Store/Slice/Site/start.slice";
 import ProductsView from "../../../Components/Features/ProductsView";
 import {Grid} from '@mui/material';
 import {SkeletonRow} from "../../../Components/Features/ProductsView/Templates";
 
 function Dashboard() {
     const {data = {}} = useSelector(state => state.site.siteStart);
-    const {userData = {}} = useSelector(state => state.panel.panelAccount);
-console.log("userData", userData)
     const dispatch = useDispatch();
     useEffect(() => {
+        return ()=>{
+            dispatch(resetState())
+        }
+        //eslint-disable-next-line react-hooks/exhaustive-deps
+    },[]);
+    useEffect(() => {
         dispatch(start({
-            marketPort: 2,
-            marketVersion: 40803,
-            pageName: "clip",
-            pageNumber: 0,
+             pageNumber: 0,
         }));
-
         // dispatch(startBar({
         //     marketPort: 2,
         //     marketVersion: 40803,
@@ -25,7 +25,6 @@ console.log("userData", userData)
         //     pageNumber: 0,
         // }))
     }, [dispatch]);
-    console.log("data", Object.keys(data));
     return (
         <Grid container spacing={2}>
             <Grid item xs={12}>

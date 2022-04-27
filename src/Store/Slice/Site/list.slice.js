@@ -5,11 +5,11 @@ const  initialState = {
     status:null,
     error: '',
     data: {},
-    dataBar: {},
     statusText:null,
+    pageSize:25
 };
 const slice = createSlice({
-    name: 'siteStart',
+    name: 'siteList',
     initialState: initialState,
 
     reducers: {
@@ -18,38 +18,24 @@ const slice = createSlice({
             state.statusText = initialState.statusText;
             state.data = initialState.data;
             state.error = initialState.error;
+            state.pageSize = initialState.pageSize;
         },
-        startSuccess: (state, action) => {
+        listSuccess: (state, action) => {
             const { status, statusText, data } = action.payload;
+            console.log("data listSuccess", data)
             state.status = status;
             state.statusText = statusText;
             state.data = data;
             state.error = ''
 
         },
-        startFailed: (state, action) => {
+        listFailed: (state, action) => {
             const { status, error } = action.payload;
             state.status = status;
             state.error = error;
             state.statusText = ''
 
         },
-        startBarSuccess: (state, action) => {
-            const { status, statusText, data } = action.payload;
-            state.status = status;
-            state.statusText = statusText;
-            state.dataBar = data;
-            state.error = ''
-
-        },
-        startBarFailed: (state, action) => {
-            const { status, error } = action.payload;
-            state.status = status;
-            state.error = error;
-            state.statusText = ''
-
-        },
-
 
 
 
@@ -57,25 +43,16 @@ const slice = createSlice({
 });
 
 export const {
-    startSuccess, startFailed,
-    startBarSuccess, startBarFailed,resetState,
+    resetState,
+    listSuccess,listFailed
 } = slice.actions;
 export default slice.reducer;
 
-export const start = (data) => apiCallBegan({
-    url: '/ws/start',
+export const List = (data) => apiCallBegan({
+    url: '/ws/list',
     method: 'post',
     data:data,
-    onSuccess: startSuccess.type,
-    onError: startFailed.type,
+    onSuccess: listSuccess.type,
+    onError: listFailed.type,
 });
-export const startBar = (data) => apiCallBegan({
-    url: '/ws/start',
-    method: 'post',
-    data:data,
-    onSuccess: startBarSuccess.type,
-    onError: startBarFailed.type,
-});
-
-
 

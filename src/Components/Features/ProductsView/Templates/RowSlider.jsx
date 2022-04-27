@@ -4,6 +4,7 @@ import 'owl.carousel/dist/assets/owl.theme.default.css';
 import {ClipItem} from ".";
 import {Grid} from "@mui/material";
 import * as React from "react";
+
 export default function RowSlider(props) {
     const {rowData = {}} = props;
     const {categoryRow = {}} = rowData;
@@ -21,24 +22,27 @@ export default function RowSlider(props) {
                     nav
                     dots={false}
                     responsive={{
-                    0:{
-                    items:1
-                },
-                    600:{
-                    items:3
-                },
-                    1000:{
-                    items:4
-                }
-                }}>
+                        0: {
+                            items: 1
+                        },
+                        600: {
+                            items: 3
+                        },
+                        1000: {
+                            items: 4
+                        }
+                        ,
+                        1400: {
+                            items: 6
+                        }
+                    }}>
 
                     {
-                        sonItems.map((sonItem, index)=>(
+                        sonItems.map((sonItem, index) => (
                             <ClipItem key={'relative-row-' + index.toString()} sonItem={sonItem}
                             />
                         ))
                     }
-
 
 
                 </OwlCarousel>

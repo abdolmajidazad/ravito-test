@@ -23,8 +23,10 @@ const api =
 
     try {
       // const token = localStorage.getItem('authToken');
+
       const response = await axios.request({
         // baseURL: 'http://localhost:3000',
+
         url,
         method,
         data:{

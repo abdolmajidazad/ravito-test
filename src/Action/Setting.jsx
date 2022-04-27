@@ -33,7 +33,9 @@ export const GetAssetUrl = (state, id, type, versionCode = 0, index = 0, quality
 
 export const ApiGeneralParameter = {
     marketPort: 2,
-    marketVersion: 40803
+    marketVersion: 40803,
+    type: "CLIP",
+    pageName: "clip"
 };
 
 

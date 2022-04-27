@@ -5,7 +5,7 @@ import SiteLayout from "../Layouts/Site";
 import Dashboard from "../Screens/Site/Dashboard";
 import Category from "../Screens/Site/Category";
 import SearchPage from "../Screens/Site/Search";
-import CategoryList from "../Screens/Site/Category/list";
+import List from "../Screens/Site/List";
 import ContentPage from "../Screens/Site/Content";
 
 
@@ -42,12 +42,15 @@ function  SiteRoutes(){
     },[siteError]);
     return(
         <Routes>
-            <Route element={<SiteLayout/>}>
+            <Route element={<SiteLayout menuType={'fixed'}/>}>
                 <Route path="/" element={<Dashboard/>} />
+            </Route>
+            <Route element={<SiteLayout menuType={'drawer'}/>}>
                 <Route element={<Category/>}>
-                    <Route path="/category/:pageNumber" element={<CategoryList/>} />
-                    <Route path="/category/:pageNumber/:categoryId" element={<CategoryList/>} />
+                    {/*<Route path="/list/:pageNumber" element={<CategoryList/>} />*/}
+                    {/*<Route path="/list/:pageNumber/:categoryId" element={<CategoryList/>} />*/}
                 </Route>
+                <Route path="/list/:catId/:sort/:nationality/:payment/:boundary/:pvideo/:filterMask/:pageNumber" element={<List/>} />
                 <Route path="/search/:text/:pageNumber" element={<SearchPage/>} />
                 <Route path="/content/:uuid" element={<ContentPage/>} />
 
