@@ -58,7 +58,7 @@ app.all("/*", function (req, res) {
                 }else{
                     console.log("req['url']", `http://${req.get('host').split(":")[0]}:3000`+ req['url'])
 
-                    apiProxy.web(req, res, {target: 'http://www.raavito.com:8280'});
+                    apiProxy.web(req, res, {target: 'https://www.raavito.com'});
                 }
 
 
