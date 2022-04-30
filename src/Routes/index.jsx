@@ -31,9 +31,9 @@ function  SiteRoutes(){
     const { enqueueSnackbar } = useSnackbar();
     const {t} = useTranslation('translate');
     const dispatch = useDispatch();
-    useEffect(()=>{
-        dispatch(UserData())
-    },[dispatch]);
+    // useEffect(()=>{
+    //     dispatch(UserData())
+    // },[dispatch]);
     const { siteError} = useSelector(state=>state.site.siteLocalGeneral);
     useEffect(()=>{
         if(siteError){

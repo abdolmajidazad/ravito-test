@@ -1,6 +1,6 @@
-import {useState} from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import { styled, alpha } from '@mui/material/styles';
+import {useState, memo} from 'react';
+import {useDispatch} from "react-redux";
+import {styled, alpha} from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -16,8 +16,9 @@ import {useTranslation} from "react-i18next";
 import {DrawerChangeStatus} from '../../../Store/Slice/Site/Local/general.slice'
 import {Link} from "react-router-dom";
 import {DrawerMenu} from '../SiteMenu'
-import {SignOut} from "../../../Store/Slice/Panel/account.slice";
-const Search = styled('div')(({ theme }) => ({
+import SignUserComponent from "../SignUser";
+
+const Search = styled('div')(({theme}) => ({
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
     backgroundColor: alpha(theme.palette.common.black, 0.15),
@@ -33,7 +34,7 @@ const Search = styled('div')(({ theme }) => ({
     },
 }));
 
-const SearchIconWrapper = styled('div')(({ theme }) => ({
+const SearchIconWrapper = styled('div')(({theme}) => ({
     padding: theme.spacing(0, 2),
     height: '100%',
     position: 'absolute',
@@ -43,7 +44,7 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
     justifyContent: 'center',
 }));
 
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
+const StyledInputBase = styled(InputBase)(({theme}) => ({
     '& .MuiInputBase-input': {
         padding: theme.spacing(1, 1, 1, 0),
         // vertical padding + font size from searchIcon
@@ -56,14 +57,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
-export default function SiteBarComponent(props) {
-    const {menuType='fixed'} = props;
+function SiteBarComponent(props) {
+    const {menuType = 'fixed'} = props;
     const dispatch = useDispatch();
-    const {userData = {}} = useSelector(state => state.panel.panelAccount);
     const [anchorEl, setAnchorEl] = useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
 
-    const {t} =  useTranslation('translate');
+    const {t} = useTranslation('translate');
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -127,77 +127,50 @@ export default function SiteBarComponent(props) {
                     aria-controls="primary-search-account-menu"
                     aria-haspopup="true"
                 >
-                    <AccountCircle />
+                    <AccountCircle/>
                 </IconButton>
-                {/*<p>Profile</p>*/}
             </MenuItem>
         </Menu>
     );
 
     return (
-        <Box sx={{ flexGrow: 1 }}>
-            <AppBar  position="fixed" color={"secondary"}>
+        <Box sx={{flexGrow: 1}}>
+            <AppBar position="fixed" color={"secondary"}>
                 <Toolbar>
                     {
-                        (menuType==='fixed' && (
+                        (menuType === 'fixed' && (
                             <IconButton
                                 size="large"
                                 edge="start"
                                 onClick={handleOpenDrawer}
                                 aria-label="open drawer"
-                                sx={{ mr: 2 }}
+                                sx={{mr: 2}}
                             >
-                                <MenuIcon />
+                                <MenuIcon/>
                             </IconButton>
-                        )) || <DrawerMenu />
+                        )) || <DrawerMenu/>
                     }
-
-
 
 
                     <Link to={'/'}>
                         <img className={'siteLogo'} src={Logo} alt={t('siteName')}/>
                     </Link>
 
-                    <Box sx={{ flexGrow: 1 }}>
+                    <Box sx={{flexGrow: 1}}>
                         <Search className={'searchBox'}>
                             <SearchIconWrapper>
-                                <SearchIcon  color={'disabled'}/>
+                                <SearchIcon color={'disabled'}/>
                             </SearchIconWrapper>
                             <StyledInputBase
                                 className={'searchInput'}
                                 placeholder={t('searchPlaceholder')}
-                                inputProps={{ 'aria-label': 'search' }}
+                                inputProps={{'aria-label': 'search'}}
                             />
                         </Search>
                     </Box>
-                    <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                    <Box sx={{display: {xs: 'none', md: 'flex'}}}>
 
-                        {
-                            (userData['userName'] && (
-                                <IconButton
-                                    size="large"
-                                    edge="end"
-                                    aria-label="account of current user"
-                                    aria-controls={menuId}
-                                    aria-haspopup="true"
-                                    onClick={()=>dispatch(SignOut({}))}
-                                >
-                                    <AccountCircle />
-                                </IconButton>
-                            )) || (
-                                <IconButton
-                                    component={Link} to={'/panel/login'}
-                                    size="large"
-                                    edge="end"
-                                    aria-label="account of current user"
-                                    aria-controls={menuId}
-                                    aria-haspopup="true"
-                                >
-                                    <AccountCircle />
-                                </IconButton>
-                            )
-                        }
+                        <SignUserComponent menuId={menuId}/>
 
                     </Box>
 
@@ -208,3 +181,4 @@ export default function SiteBarComponent(props) {
         </Box>
     );
 }
+export default  memo(SiteBarComponent)

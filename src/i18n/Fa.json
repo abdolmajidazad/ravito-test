@@ -31,5 +31,7 @@
   "downloadCount": "تعداد دانلود",
   "newArrival": "تازه ترین ها",
   "mostStar": "ستاره دارترین ها",
-  "NoContentForShow" : "محتوایی برای نمایش وجود ندارد."
+  "NoContentForShow" : "محتوایی برای نمایش وجود ندارد.",
+  "sign": "ورود / ثبت نام",
+  "signOut": "خروج"
 }
